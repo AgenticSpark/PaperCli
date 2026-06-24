@@ -14,7 +14,7 @@ from typing import Optional
 from . import arxiv, dblp, huggingface, paperswithcode, scholar
 from . import semanticscholar, crossref, openalex
 from . import pubmed, biorxiv, europepmc
-from . import hal, pmc, doaj, zenodo, openaire, unpaywall, inspirehep
+from . import hal, pmc, doaj, zenodo, openaire, inspirehep
 from . import chemrxiv
 
 logger = logging.getLogger("paper_cli.unified")
@@ -46,7 +46,6 @@ SOURCE_ALIASES = {
     "doaj": "doaj",
     "zenodo": "zenodo",
     "openaire": "openaire",
-    "unpaywall": "unpaywall",
     "inspirehep": "inspirehep", "inspire": "inspirehep",
     "iacr": "iacr",
     "citeseerx": "citeseerx",

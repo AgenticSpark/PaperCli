@@ -29,13 +29,12 @@ All sources are free and require **no authentication**.
 | 17 | **Zenodo** | Open research data |
 | 18 | **OpenAIRE** | European open access |
 | 19 | **INSPIRE-HEP** | High energy physics |
-| 20 | **Unpaywall** | Open access DOI resolver |
-| 21 | **IACR** | Cryptography ePrint archive |
-| 22 | **CiteSeerX** | CS digital library |
-| 23 | **SSRN** | Social science preprints |
-| 24 | **BASE** | Bielefeld Academic Search Engine |
-| 25 | **ChemRxiv** | Chemistry preprints |
-| 26 | **Sci-Hub** | PDF fetcher |
+| 20 | **IACR** | Cryptography ePrint archive |
+| 21 | **CiteSeerX** | CS digital library |
+| 22 | **SSRN** | Social science preprints |
+| 23 | **BASE** | Bielefeld Academic Search Engine |
+| 24 | **ChemRxiv** | Chemistry preprints |
+| 25 | **Sci-Hub** | PDF fetcher |
 
 ## Quick Start
 
@@ -115,7 +114,6 @@ List every available source.
 | `ssrn` | SSRN |
 | `base` | BASE |
 | `chemrxiv` | ChemRxiv |
-| `unpaywall` | Unpaywall |
 
 ## Configuration
 
@@ -165,13 +163,11 @@ src/paper_cli/
     ├── pmc.py           # PubMed Central
     ├── huggingface.py   # HuggingFace Daily Papers
     ├── paperswithcode.py # PapersWithCode
-    ├── openreview.py    # OpenReview
     ├── hal.py           # HAL
     ├── doaj.py          # DOAJ
     ├── zenodo.py        # Zenodo
     ├── openaire.py      # OpenAIRE
     ├── inspirehep.py    # INSPIRE-HEP
-    ├── unpaywall.py     # Unpaywall
     ├── iacr.py          # IACR ePrint
     ├── citeseerx.py     # CiteSeerX
     ├── ssrn.py          # SSRN

@@ -37,7 +37,6 @@ ASYNC_SOURCE_MODULES = [
     "paper_cli.sources.zenodo",
     "paper_cli.sources.openaire",
     "paper_cli.sources.inspirehep",
-    "paper_cli.sources.unpaywall",
     "paper_cli.sources.chemrxiv",
 ]
 
