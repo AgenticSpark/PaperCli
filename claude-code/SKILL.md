@@ -47,9 +47,9 @@ uv run --directory <REPO_PATH> paper-search sources
 
 ## Sources
 
-arxiv, pubmed, biorxiv, medrxiv, google_scholar, iacr, semantic, crossref, openalex, pmc, core, europepmc, dblp, openaire, citeseerx, doaj, base, zenodo, hal, ssrn, unpaywall
+arxiv, pubmed, biorxiv, medrxiv, google_scholar, iacr, semantic, crossref, openalex, pmc, europepmc, dblp, openaire, citeseerx, doaj, base, zenodo, hal, ssrn, unpaywall, chemrxiv, inspirehep, pwc, hf
 
-Optional (env vars): ieee (`IEEE_API_KEY`), acm (`ACM_API_KEY`)
+All sources are free and require no API keys or authentication.
 
 ## Workflow
 

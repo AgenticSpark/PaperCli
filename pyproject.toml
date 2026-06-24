@@ -3,17 +3,16 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "paper-mcp"
+name = "paper-cli"
 version = "0.2.0"
-description = "All-in-one academic paper MCP server — 30+ sources including ArXiv, PubMed, Semantic Scholar, CrossRef, OpenAlex, Google Scholar, DBLP, IACR, CORE, SSRN, and more"
+description = "All-in-one academic paper search CLI — 25+ keyless sources including ArXiv, PubMed, Semantic Scholar, CrossRef, OpenAlex, Google Scholar, DBLP, IACR, SSRN, and more"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [
-    { name = "PaperMCP Contributors" }
+    { name = "PaperCli Contributors" }
 ]
 dependencies = [
-    "mcp>=1.2.0",
     "httpx[socks]>=0.24.0",
     "requests>=2.31.0",
     "arxiv>=2.1.0",
@@ -36,11 +35,11 @@ dev = [
 ]
 
 [project.scripts]
-paper-mcp = "paper_mcp:main"
-paper-search = "paper_mcp.cli:main"
+paper-cli = "paper_cli.cli:main"
+paper-search = "paper_cli.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/paper_mcp"]
+packages = ["src/paper_cli"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

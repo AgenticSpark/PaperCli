@@ -43,7 +43,7 @@ SEARCH_QUERIES = [
 ]
 
 # Our own repo — skip it in results
-OWN_REPO = "ScienceAIHub/PaperMCP"
+OWN_REPO = "AgenticSpark/PaperCli"
 
 # Rate-limit delay (seconds) between GitHub API requests
 RATE_LIMIT_DELAY = 2

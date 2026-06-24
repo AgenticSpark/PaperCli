@@ -13,18 +13,12 @@ FROM python:3.12-slim
 
 WORKDIR /app
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
-COPY --from=builder /usr/local/bin/paper-mcp /usr/local/bin/paper-mcp
+COPY --from=builder /usr/local/bin/paper-cli /usr/local/bin/paper-cli
 COPY --from=builder /usr/local/bin/paper-search /usr/local/bin/paper-search
 
-# Environment variables (override at runtime with -e)
-ENV PAPER_MCP_STORAGE=""
-ENV PAPER_SEARCH_MCP_UNPAYWALL_EMAIL=""
-ENV PAPER_SEARCH_MCP_CORE_API_KEY=""
-ENV PAPER_SEARCH_MCP_SEMANTIC_SCHOLAR_API_KEY=""
-ENV PAPER_SEARCH_MCP_ZENODO_ACCESS_TOKEN=""
-ENV PAPER_SEARCH_MCP_DOAJ_API_KEY=""
-ENV PAPER_SEARCH_MCP_GOOGLE_SCHOLAR_PROXY_URL=""
-ENV PAPER_SEARCH_MCP_IEEE_API_KEY=""
-ENV PAPER_SEARCH_MCP_ACM_API_KEY=""
+# Optional (non-credential) settings — override at runtime with -e
+ENV PAPER_CLI_STORAGE=""
+ENV PAPER_CLI_GOOGLE_SCHOLAR_PROXY_URL=""
 
-CMD ["paper-mcp"]
+ENTRYPOINT ["paper-cli"]
+CMD ["sources"]

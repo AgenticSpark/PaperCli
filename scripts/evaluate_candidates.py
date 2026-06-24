@@ -3,7 +3,7 @@
 Evaluate discovered MCP candidates for potential integration.
 
 Clones the top auth-free candidate repos, checks if they contain
-paper-source modules that could be adapted for PaperMCP, and outputs
+paper-source modules that could be adapted for PaperCli, and outputs
 a structured evaluation report.
 
 Usage:

@@ -1,43 +1,41 @@
-# PaperMCP — All-in-One Academic Paper MCP Server
+# PaperCli — All-in-One Academic Paper Search CLI
 
-Unified MCP server combining **30+ academic paper sources** into 4 clean tools.
-Search, download, and read papers from ArXiv, PubMed, Semantic Scholar, CrossRef,
-Google Scholar, DBLP, OpenAlex, and many more — all through a single interface.
+A single command-line tool to **search, download, and read** academic papers
+across **25+ keyless sources** — ArXiv, PubMed, Semantic Scholar, CrossRef,
+OpenAlex, Google Scholar, DBLP, and many more. **No API keys, no accounts, no auth.**
 
 ## Supported Sources
 
-| # | Source | Type | Auth |
-|---|--------|------|------|
-| 1 | **ArXiv** | Preprints (CS, Physics, Math) | Free |
-| 2 | **PubMed** | Biomedical literature | Free |
-| 3 | **Semantic Scholar** | AI-powered academic search | Free |
-| 4 | **CrossRef** | DOI metadata | Free |
-| 5 | **OpenAlex** | Open scholarly metadata | Free |
-| 6 | **DBLP** | Computer science bibliography | Free |
-| 7 | **Google Scholar** | Web scraping (scholarly lib) | Free |
-| 8 | **Google Scholar (HTML)** | Direct HTML parsing | Free |
-| 9 | **bioRxiv** | Biology preprints | Free |
-| 10 | **medRxiv** | Medical preprints | Free |
-| 11 | **Europe PMC** | European biomedical literature | Free |
-| 12 | **PubMed Central** | Full-text biomedical articles | Free |
-| 13 | **HuggingFace** | Daily trending AI papers | Free |
-| 14 | **PapersWithCode** | ML papers with code | Free |
-| 15 | **OpenReview** | Conference papers | Free |
-| 16 | **HAL** | French national open archive | Free |
-| 17 | **DOAJ** | Open access journals | Free |
-| 18 | **Zenodo** | Open research data | Free |
-| 19 | **OpenAIRE** | European open access | Free |
-| 20 | **INSPIRE-HEP** | High energy physics | Free |
-| 21 | **Unpaywall** | Open access DOI resolver | Free |
-| 22 | **IACR** | Cryptography ePrint archive | Free |
-| 23 | **CORE** | Global open access aggregator | API key (opt.) |
-| 24 | **CiteSeerX** | CS digital library | Free |
-| 25 | **SSRN** | Social science preprints | Free |
-| 26 | **BASE** | Bielefeld Academic Search Engine | Free |
-| 27 | **ChemRxiv** | Chemistry preprints | Free |
-| 28 | **Sci-Hub** | PDF fetcher (CLI only) | Free |
-| 29 | **IEEE Xplore** | Engineering (skeleton) | API key |
-| 30 | **ACM DL** | Computing (skeleton) | API key |
+All sources are free and require **no authentication**.
+
+| # | Source | Type |
+|---|--------|------|
+| 1 | **ArXiv** | Preprints (CS, Physics, Math) |
+| 2 | **PubMed** | Biomedical literature |
+| 3 | **Semantic Scholar** | AI-powered academic search |
+| 4 | **CrossRef** | DOI metadata |
+| 5 | **OpenAlex** | Open scholarly metadata |
+| 6 | **DBLP** | Computer science bibliography |
+| 7 | **Google Scholar** | Web scraping (scholarly lib) |
+| 8 | **Google Scholar (HTML)** | Direct HTML parsing |
+| 9 | **bioRxiv** | Biology preprints |
+| 10 | **medRxiv** | Medical preprints |
+| 11 | **Europe PMC** | European biomedical literature |
+| 12 | **PubMed Central** | Full-text biomedical articles |
+| 13 | **HuggingFace** | Daily trending AI papers |
+| 14 | **PapersWithCode** | ML papers with code |
+| 15 | **HAL** | French national open archive |
+| 16 | **DOAJ** | Open access journals |
+| 17 | **Zenodo** | Open research data |
+| 18 | **OpenAIRE** | European open access |
+| 19 | **INSPIRE-HEP** | High energy physics |
+| 20 | **Unpaywall** | Open access DOI resolver |
+| 21 | **IACR** | Cryptography ePrint archive |
+| 22 | **CiteSeerX** | CS digital library |
+| 23 | **SSRN** | Social science preprints |
+| 24 | **BASE** | Bielefeld Academic Search Engine |
+| 25 | **ChemRxiv** | Chemistry preprints |
+| 26 | **Sci-Hub** | PDF fetcher |
 
 ## Quick Start
 
@@ -48,47 +46,46 @@ pip install -e .
 uv pip install -e .
 ```
 
-### Run MCP Server
-```bash
-paper-mcp
-# or
-python -m paper_mcp
-```
+This installs two equivalent commands: `paper-cli` and `paper-search`.
 
-### CLI Usage
+### Usage
 ```bash
 # Search across all sources
-paper-search search "transformer architectures" -n 5
+paper-cli search "transformer architectures" -n 5
 
 # Search specific sources
-paper-search search "CRISPR" -s pubmed,biorxiv,europepmc
+paper-cli search "CRISPR" -s pubmed,biorxiv,europepmc
 
-# Download a paper
-paper-search download arxiv 2401.12345
+# Download a paper PDF
+paper-cli download arxiv 2401.12345
 
-# Read paper text
-paper-search read arxiv 2401.12345
+# Read paper text (download + extract)
+paper-cli read arxiv 2401.12345
 
 # List available sources
-paper-search sources
+paper-cli sources
 ```
 
-## Unified MCP Tools
+You can also run it as a module:
+```bash
+python -m paper_cli search "diffusion models" -n 3
+```
 
-### `search(query, sources?, max_results?)`
-Search for papers across all sources in parallel. Returns merged results.
+## Commands
 
-### `download(paper_id)`
-Download a paper by ID or URL. Auto-detects source from format:
-- ArXiv ID: `2401.12345` or `arxiv:2401.12345`
-- DOI: `10.xxxx/...`
-- URL: any `https://...` link
+### `search <query> [-n N] [-s SOURCES]`
+Search for papers across sources in parallel and print merged results.
+- `-n, --max-results`: results per source (default: 5)
+- `-s, --sources`: comma-separated sources or `all` (default: all)
 
-### `read(paper_id)`
-Read a paper's full text or metadata. Auto-detects source.
+### `download <source> <paper_id> [-o DIR]`
+Download a paper PDF. `-o` sets the output directory (default: `./downloads`).
 
-### `list_papers(source?)`
-List locally downloaded papers and today's HuggingFace trending papers.
+### `read <source> <paper_id> [-o DIR]`
+Download and extract the full text of a paper.
+
+### `sources`
+List every available source.
 
 ## Source Aliases
 
@@ -114,7 +111,6 @@ List locally downloaded papers and today's HuggingFace trending papers.
 | `openaire` | OpenAIRE |
 | `inspirehep`, `inspire` | INSPIRE-HEP |
 | `iacr` | IACR ePrint |
-| `core` | CORE |
 | `citeseerx` | CiteSeerX |
 | `ssrn` | SSRN |
 | `base` | BASE |
@@ -123,51 +119,31 @@ List locally downloaded papers and today's HuggingFace trending papers.
 
 ## Configuration
 
-### MCP Client (Claude Desktop / VS Code)
-
-```json
-{
-  "mcpServers": {
-    "paper-mcp": {
-      "command": "paper-mcp"
-    }
-  }
-}
-```
-
-### Environment Variables
+PaperCli works out of the box with **no configuration**. The only optional
+environment variables are conveniences (not credentials):
 
 ```bash
-# Storage path for downloaded papers
-PAPER_MCP_STORAGE=~/.paper-mcp/papers
+# Storage path for downloaded papers (default: ~/.paper-cli/papers)
+PAPER_CLI_STORAGE=~/.paper-cli/papers
 
-# OpenReview credentials (optional)
-OPENREVIEW_USERNAME=
-OPENREVIEW_PASSWORD=
-
-# Optional API keys for enhanced sources
-PAPER_SEARCH_MCP_CORE_API_KEY=       # CORE API
-PAPER_SEARCH_MCP_UNPAYWALL_EMAIL=    # Unpaywall (polite pool)
-PAPER_SEARCH_MCP_IEEE_API_KEY=       # IEEE Xplore
-PAPER_SEARCH_MCP_ACM_API_KEY=        # ACM Digital Library
-PAPER_SEARCH_MCP_GOOGLE_SCHOLAR_PROXY_URL=  # Google Scholar proxy
+# Optional proxy for Google Scholar to avoid rate limits
+PAPER_CLI_GOOGLE_SCHOLAR_PROXY_URL=
 ```
 
 ## Docker
 
 ```bash
-docker build -t paper-mcp .
-docker run -it paper-mcp
+docker build -t paper-cli .
+docker run --rm paper-cli search "graph neural networks" -n 3
 ```
 
 ## Project Structure
 
 ```
-src/paper_mcp/
+src/paper_cli/
 ├── __init__.py          # Package entry point
-├── __main__.py          # python -m paper_mcp
-├── server.py            # FastMCP server (4 unified tools)
-├── cli.py               # CLI interface (paper-search command)
+├── __main__.py          # python -m paper_cli
+├── cli.py               # CLI interface (paper-cli / paper-search)
 ├── paper.py             # Paper dataclass model
 ├── config.py            # Environment configuration
 ├── utils.py             # DOI extraction utilities
@@ -197,14 +173,11 @@ src/paper_mcp/
     ├── inspirehep.py    # INSPIRE-HEP
     ├── unpaywall.py     # Unpaywall
     ├── iacr.py          # IACR ePrint
-    ├── core.py          # CORE
     ├── citeseerx.py     # CiteSeerX
     ├── ssrn.py          # SSRN
     ├── base_search.py   # BASE
     ├── chemrxiv.py      # ChemRxiv
-    ├── sci_hub.py       # Sci-Hub
-    ├── ieee.py          # IEEE Xplore (skeleton)
-    └── acm.py           # ACM DL (skeleton)
+    └── sci_hub.py       # Sci-Hub
 ```
 
 ## License

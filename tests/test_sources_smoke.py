@@ -1,5 +1,5 @@
 """
-Smoke tests for all MCP paper sources.
+Smoke tests for all paper sources.
 
 Each test verifies that a source module can be imported and its main
 functions execute without crashing.  We use a simple "deep learning"
@@ -18,50 +18,49 @@ import pytest
 QUERY = "deep learning"
 MAX_RESULTS = 2
 
-# Functional async source modules (original PaperMCP)
+# Functional async source modules (original PaperCli)
 ASYNC_SOURCE_MODULES = [
-    "paper_mcp.sources.arxiv",
-    "paper_mcp.sources.dblp",
-    "paper_mcp.sources.scholar",
-    "paper_mcp.sources.paperswithcode",
-    "paper_mcp.sources.huggingface",
-    "paper_mcp.sources.semanticscholar",
-    "paper_mcp.sources.crossref",
-    "paper_mcp.sources.openalex",
-    "paper_mcp.sources.pubmed",
-    "paper_mcp.sources.biorxiv",
-    "paper_mcp.sources.europepmc",
-    "paper_mcp.sources.hal",
-    "paper_mcp.sources.pmc",
-    "paper_mcp.sources.doaj",
-    "paper_mcp.sources.zenodo",
-    "paper_mcp.sources.openaire",
-    "paper_mcp.sources.inspirehep",
-    "paper_mcp.sources.unpaywall",
-    "paper_mcp.sources.chemrxiv",
+    "paper_cli.sources.arxiv",
+    "paper_cli.sources.dblp",
+    "paper_cli.sources.scholar",
+    "paper_cli.sources.paperswithcode",
+    "paper_cli.sources.huggingface",
+    "paper_cli.sources.semanticscholar",
+    "paper_cli.sources.crossref",
+    "paper_cli.sources.openalex",
+    "paper_cli.sources.pubmed",
+    "paper_cli.sources.biorxiv",
+    "paper_cli.sources.europepmc",
+    "paper_cli.sources.hal",
+    "paper_cli.sources.pmc",
+    "paper_cli.sources.doaj",
+    "paper_cli.sources.zenodo",
+    "paper_cli.sources.openaire",
+    "paper_cli.sources.inspirehep",
+    "paper_cli.sources.unpaywall",
+    "paper_cli.sources.chemrxiv",
 ]
 
 # Class-based source modules
 CLASS_SOURCE_MODULES = [
-    "paper_mcp.sources.google_scholar",
-    "paper_mcp.sources.iacr",
-    "paper_mcp.sources.core",
-    "paper_mcp.sources.citeseerx",
-    "paper_mcp.sources.ssrn",
-    "paper_mcp.sources.base_search",
-    "paper_mcp.sources.medrxiv",
-    "paper_mcp.sources.sci_hub",
+    "paper_cli.sources.google_scholar",
+    "paper_cli.sources.iacr",
+    "paper_cli.sources.citeseerx",
+    "paper_cli.sources.ssrn",
+    "paper_cli.sources.base_search",
+    "paper_cli.sources.medrxiv",
+    "paper_cli.sources.sci_hub",
 ]
 
 ALL_SOURCE_MODULES = ASYNC_SOURCE_MODULES + CLASS_SOURCE_MODULES
 
 # Infrastructure modules
 INFRA_MODULES = [
-    "paper_mcp.paper",
-    "paper_mcp.config",
-    "paper_mcp.utils",
-    "paper_mcp.sources.base",
-    "paper_mcp.sources.oaipmh",
+    "paper_cli.paper",
+    "paper_cli.config",
+    "paper_cli.utils",
+    "paper_cli.sources.base",
+    "paper_cli.sources.oaipmh",
 ]
 
 
@@ -111,7 +110,7 @@ async def test_source_search(module_path: str):
 
 async def test_unified_search():
     """The unified search tool should aggregate results."""
-    from paper_mcp.sources import unified
+    from paper_cli.sources import unified
 
     result = await unified.search(QUERY, None, MAX_RESULTS)
     assert isinstance(result, str)
